@@ -1,8 +1,8 @@
+import styles from '../app.module.css';
 
-
-export const ContactItem = ({ name, number }) => (
+export const ContactItem = ({ contact, onRemove }) => (
   <li>
-        {name}: {number}
-        <button type="button">Delete</button>
+        {contact.name}: {contact.number}
+        <button className={styles.delete__button} type="button" onClick={() => onRemove(contact.id)}>Delete</button>
   </li>
 );

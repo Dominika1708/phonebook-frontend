@@ -1,0 +1,46 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 2px;
+    border: 1px solid #777777;
+    min-width: 400px;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.input {
+    margin-top: 5px;
+    border-radius: 2px;
+    border: 1px solid #d4d4d4;
+    max-width: 150px;
+}
+
+.button,
+.delete__button {
+    width: fit-content;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #d4d4d4;
+    box-shadow: 3px 3px 5px 1px #dddddd;
+    transition: box-shadow 100ms ease-in;
+}
+
+.button:hover,
+.delete__button:hover {
+    box-shadow: none;
+}
+
+.button:active,
+.delete__button:active {
+    box-shadow: 3px 3px 5px 1px #dddddd inset;
+}
+
+.delete__button {
+    margin-left: 20px;
+}
