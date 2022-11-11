@@ -1,82 +1,68 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { nanoid } from 'nanoid';
 
-import { ContactForm } from './contactForm';
-import { ContactList } from './contactList';
-import { Filter } from './filter';
+import { ContactForm } from './ContactForm/contactForm';
+import { ContactList } from './ContactList/contactList';
+import { Filter } from './Filter/filter';
 
-export class App extends Component {
-  state = {
-    contacts: [],
-    filter: '',
-  };
+export const App = () => {
+  const [contacts, setContacts] = useState([]);
+  const [filter, setFilter] = useState('');
 
-  componentDidMount() {
-    if (!localStorage.getItem('contacts')) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-    const savedContacts = JSON.parse(localStorage.getItem('contacts'));
-    this.setState({ contacts: savedContacts });
-  }
 
-  componentDidUpdate(prevStats) {
-    if (this.state.contacts !== prevStats.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  }
-
-  addContact = values => {
+  const addContact = values => {
     const { name, number } = values;
-    if (this.state.contacts.every(contact => contact.name !== name)) {
+    if (contacts.every(contact => contact.name !== name)) {
       const newContact = { id: nanoid(), name, number };
-      this.setState(({ contacts }) => ({
-        contacts: [newContact, ...contacts],
-      }));
+      setContacts([newContact, ...contacts]);
     } else {
       alert(`${name} is already in contacts`);
     }
   };
 
-  handleRemove = id => {
-    const newList = this.state.contacts.filter(item => item.id !== id);
-    this.setState({ contacts: newList });
+  const handleRemove = id => {
+    const newList = contacts.filter(item => item.id !== id);
+    setContacts(newList);
   };
 
-  searchItems = value => {
-    this.setState({ filter: value });
+  const searchItems = value => {
+    setFilter(value);
   };
 
-  renderItems = () => {
+  const renderItems = () => {
     const filteredData = [];
-    this.state.contacts.forEach(item => {
-      if (
-        item.name
-          .toLocaleLowerCase()
-          .includes(this.state.filter.toLocaleLowerCase())
-      ) {
+    contacts.forEach(item => {
+      if (item.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())) {
         filteredData.push(item);
       }
     });
     if (filteredData.length > 0) {
       return filteredData;
     } else {
-      return this.state.contacts;
+      return contacts;
     }
   };
 
-  render() {
-    return (
-      <div>
-        <h1>Phonebook</h1>
-        <ContactForm onSubmit={this.addContact} />
+  useEffect(() => {
+    const savedContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (savedContacts) {
+      setContacts(savedContacts);
+    }
+  }, []);
 
-        <h2>Contacts</h2>
-        <Filter onChange={this.searchItems} />
-        <ContactList
-          contacts={this.renderItems()}
-          onRemove={this.handleRemove}
-        />
-      </div>
-    );
-  }
-}
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
+
+  return (
+    <div>
+      <h1>Phonebook</h1>
+      <ContactForm onSubmit={addContact} />
+
+      <h2>Contacts</h2>
+      <Filter onChange={searchItems} />
+      <ContactList contacts={renderItems()} onRemove={handleRemove} />
+    </div>
+  );
+};

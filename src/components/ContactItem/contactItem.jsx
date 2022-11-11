@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import styles from './app.module.css';
+import styles from '../app.module.css';
 
 export const ContactItem = ({ contact, onRemove }) => (
   <li>
