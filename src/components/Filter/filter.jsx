@@ -1,11 +1,14 @@
+import { debounce } from 'debounce';
+import { useDispatch } from 'react-redux';
+import { setFilter } from 'redux/filterSlice';
 import styles from '../app.module.css';
 
-
-export const Filter = (props) => {
+export const Filter = () => {
+  const dispatch = useDispatch();
 
   const searchItems = e => {
     e.preventDefault();
-    props.onChange(e.target.value);
+    dispatch(setFilter(e.target.value));
   };
 
   return (
@@ -15,7 +18,7 @@ export const Filter = (props) => {
         className={styles.input}
         type="text"
         name="filter"
-        onChange={searchItems}
+        onChange={debounce(searchItems, 500)}
       ></input>
     </label>
   );
