@@ -1,6 +1,6 @@
 import { debounce } from 'debounce';
 import { useDispatch } from 'react-redux';
-import { setFilter } from 'redux/filterSlice';
+import { setFilter } from 'redux/contacts/filterSlice';
 import styles from '../app.module.css';
 
 export const Filter = () => {
