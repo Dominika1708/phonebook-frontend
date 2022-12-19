@@ -1,6 +1,6 @@
 import { login, logout, register } from "./operations";
-
-const { createSlice } = require("@reduxjs/toolkit");
+import { createReducer} from '@reduxjs/toolkit';
+// import { createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   user: { name: null, email: null },
@@ -8,26 +8,49 @@ const initialState = {
   isLoggedIn: false,
 };
 
-const authSlice = createSlice({
-    name: 'auth',
+// const authSlice = createSlice({
+//     name: 'auth',
+//     initialState,
+//     extraReducers: {
+//         [register.fulfilled](state, action) {
+//             state.user = action.payload.user;
+//             state.token = action.payload.token;
+//             state.isLoggedIn = true
+//         },
+//         [login.fulfilled](state, action) {
+//             state.user = action.payload.user;
+//             state.token = action.payload.token;
+//             state.isLoggedIn = true
+//          },
+//         [logout.fulfilled](state) {
+//             state.user = { name: null, email: null };
+//             state.token = null;
+//             state.isLoggedIn = false
+//         },
+//     }
+// })
+
+// export const authReducer = authSlice.reducer;
+
+export const authReducer = createReducer(
     initialState,
-    extraReducers: {
-        [register.fulfilled](state, action) { 
+    (builder) => {
+        builder
+        .addCase(register.fulfilled, (state, action) => { 
             state.user = action.payload.user;
             state.token = action.payload.token;
             state.isLoggedIn = true
-        },
-        [login.fulfilled](state, action) {
+        })
+        .addCase(login.fulfilled, (state, action) => {
             state.user = action.payload.user;
             state.token = action.payload.token;
             state.isLoggedIn = true
-         },
-        [logout.fulfilled](state) {
+         })
+        .addCase(logout.fulfilled, (state) => {
             state.user = { name: null, email: null };
             state.token = null;
-            state.isLoggedIn = false
-        },
+            state.isLoggedIn = false  
+        })
     }
-})
+)
 
-export const authReducer = authSlice.reducer;
