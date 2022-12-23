@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
-import { selectUser } from 'redux/auth/selectors';
+import { selectAuth } from 'redux/auth/selectors';
 import { Layout } from './Layout/layout';
 import { PrivateRoute } from './Routes/privateRoute';
 import { RestrictedRoute } from './Routes/restrictedRoute';
@@ -13,7 +13,7 @@ const Home = lazy(() => import('pages/Home/home'));
 const Register = lazy(() => import('pages/Register/register'));
 
 export const App = () => {
-  const user = useSelector(selectUser);
+  const user = useSelector(selectAuth);
 
   useEffect(() => {
     if(user === undefined) return
