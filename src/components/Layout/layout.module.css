@@ -11,6 +11,12 @@
   margin-right: auto;
   padding: 20px;
   text-decoration: none;
+  transition: transform 200ms ease-out;
+}
+
+.phonebook:hover {
+  color: #fff;
+  transform: scale(1.1);
 }
 
 .navigation {

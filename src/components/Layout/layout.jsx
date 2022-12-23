@@ -22,9 +22,9 @@ export const Layout = () => {
   return (
     <>
       <header className={styles.container}>
-        <Link to="login" className={styles.phonebook}>
+        <NavLink to="login" className={styles.phonebook}>
           Phonebook {isLoggedin && `of ${user.name}`}
-        </Link>
+        </NavLink>
         <nav className={styles.navigation}>
           {isLoggedin ? (
             <Link

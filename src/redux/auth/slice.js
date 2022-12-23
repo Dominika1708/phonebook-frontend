@@ -9,11 +9,6 @@ let initialState = {
   isPending: false,
 };
 
-const savedUser = JSON.parse(localStorage.getItem('user'));
-if (savedUser) {
-  initialState = savedUser;
-}
-
 export const authReducer = createReducer(initialState, builder => {
   builder
     .addCase(register.fulfilled, (state, action) => {

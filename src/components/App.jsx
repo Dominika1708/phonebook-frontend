@@ -1,8 +1,5 @@
-import { useEffect } from 'react';
 import { lazy } from 'react';
-import { useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
-import { selectAuth } from 'redux/auth/selectors';
 import { Layout } from './Layout/layout';
 import { PrivateRoute } from './Routes/privateRoute';
 import { RestrictedRoute } from './Routes/restrictedRoute';
@@ -13,13 +10,6 @@ const Home = lazy(() => import('pages/Home/home'));
 const Register = lazy(() => import('pages/Register/register'));
 
 export const App = () => {
-  const user = useSelector(selectAuth);
-
-  useEffect(() => {
-    if (user === undefined) return;
-    localStorage.setItem('user', JSON.stringify(user));
-  }, [user]);
-
   return (
     <div>
       <Routes>
@@ -29,7 +19,7 @@ export const App = () => {
             path="register"
             element={
               <RestrictedRoute
-                redirectTo="phonebook"
+                redirectTo="/phonebook"
                 component={<Register />}
               />
             }
@@ -37,13 +27,13 @@ export const App = () => {
           <Route
             path="login"
             element={
-              <RestrictedRoute redirectTo="phonebook" component={<Login />} />
+              <RestrictedRoute redirectTo="/phonebook" component={<Login />} />
             }
           />
           <Route
             path="phonebook"
             element={
-              <PrivateRoute redirectTo="login" component={<Phonebook />} />
+              <PrivateRoute redirectTo="/login" component={<Phonebook />} />
             }
           />
         </Route>
