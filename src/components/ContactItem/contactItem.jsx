@@ -8,7 +8,7 @@ export const ContactItem = ({ contact }) => {
 
   return (
     <li>
-      {contact.name}: {contact.phone}
+      {contact.name}: {contact.number}
       <button
         className={styles.delete__button}
         type="button"
