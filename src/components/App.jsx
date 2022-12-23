@@ -16,7 +16,7 @@ export const App = () => {
   const user = useSelector(selectAuth);
 
   useEffect(() => {
-    if(user === undefined) return
+    if (user === undefined) return;
     localStorage.setItem('user', JSON.stringify(user));
   }, [user]);
 
@@ -26,24 +26,24 @@ export const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route
-            path="/register"
+            path="register"
             element={
               <RestrictedRoute
-                redirectTo="/phonebook"
+                redirectTo="phonebook"
                 component={<Register />}
               />
             }
           />
           <Route
-            path="/login"
+            path="login"
             element={
-              <RestrictedRoute redirectTo="/phonebook" component={<Login />} />
+              <RestrictedRoute redirectTo="phonebook" component={<Login />} />
             }
           />
           <Route
-            path="/phonebook"
+            path="phonebook"
             element={
-              <PrivateRoute redirectTo="/login" component={<Phonebook />} />
+              <PrivateRoute redirectTo="login" component={<Phonebook />} />
             }
           />
         </Route>
