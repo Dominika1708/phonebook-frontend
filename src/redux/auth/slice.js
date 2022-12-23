@@ -2,12 +2,17 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { login, logout, register } from './operations';
 
-const initialState = {
+let initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
   isPending: false,
 };
+
+const savedUser = JSON.parse(localStorage.getItem('user'));
+if (savedUser) {
+  initialState = savedUser;
+}
 
 export const authReducer = createReducer(initialState, builder => {
   builder
