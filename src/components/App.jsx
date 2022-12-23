@@ -16,6 +16,7 @@ export const App = () => {
   const user = useSelector(selectUser);
 
   useEffect(() => {
+    if(user === undefined) return
     localStorage.setItem('user', JSON.stringify(user));
   }, [user]);
 
