@@ -18,7 +18,7 @@
     margin-top: 5px;
     border-radius: 2px;
     border: 1px solid #d4d4d4;
-    max-width: 150px;
+    width: 70%;
 }
 
 .button,
@@ -43,4 +43,8 @@
 
 .delete__button {
     margin-left: 20px;
+}
+
+.loading {
+    height: 20px;
 }
