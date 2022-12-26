@@ -32,6 +32,9 @@ export const authReducer = createReducer(initialState, builder => {
       state.isLoggedIn = true;
       localStorage.setItem('user', JSON.stringify(state));
     })
+    .addCase(login.rejected, (_state, action) => {
+      alert(action.payload);
+    })
     .addCase(logout.fulfilled, state => {
       state.user = { name: null, email: null };
       state.token = null;
