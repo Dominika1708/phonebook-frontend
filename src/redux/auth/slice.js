@@ -1,11 +1,12 @@
 // import { createSlice} from '@reduxjs/toolkit';
 import { createReducer } from '@reduxjs/toolkit';
-import { login, logout, register, setAuthHeader } from './operations';
+import { login, logout, register, setAuthHeader, verify } from './operations';
 
 let initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
+  isVerified: true,
   isPending: false,
 };
 
@@ -19,8 +20,7 @@ export const authReducer = createReducer(initialState, builder => {
   builder
     .addCase(register.fulfilled, (state, action) => {
       state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;
+      state.isVerified = false;
       localStorage.setItem('user', JSON.stringify(state));
     })
     .addCase(register.rejected, (_state, action) => {
@@ -46,7 +46,15 @@ export const authReducer = createReducer(initialState, builder => {
       state.isPending = true;
     })
     .addCase(logout.rejected, state => {
+      state.user = { name: null, email: null };
+      state.token = null;
+      state.isLoggedIn = false;
       state.isPending = false;
+      localStorage.removeItem('user');
+    })
+    .addCase(verify.fulfilled, (state, action) => {
+      state.isVerified = true;
+
     });
 });
 

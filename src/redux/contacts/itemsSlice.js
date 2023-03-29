@@ -1,6 +1,6 @@
 // import { createSlice} from '@reduxjs/toolkit';
 import { createReducer } from '@reduxjs/toolkit';
-import { fetchContacts, addContact, deleteContact } from './operations';
+import { fetchContacts, addContact, deleteContact, clearContacts } from './operations';
 
 let itemsInitialState = {
   list: [],
@@ -19,32 +19,36 @@ const handleRejected = (state, action) => {
 
 export const itemsReducer = createReducer(itemsInitialState, builder => {
   builder
-  .addCase(fetchContacts.fulfilled, (state, action) => {
-    state.isLoading = false;
-    state.error = null;
-    state.list = action.payload;
-  })
-  .addCase(addContact.fulfilled, (state, action) => {
-    state.isLoading = false;
-    state.error = null;
-    state.list.push(action.payload);
-  })
-  .addCase(deleteContact.fulfilled, (state, action) => {
-    state.isLoading = false;
-    state.error = null;
-    const index = state.list.findIndex(item => item.id === action.payload.id);
-    state.list.splice(index, 1);
-  })
-  
-  .addCase(fetchContacts.pending, handlePending)
-  .addCase(addContact.pending, handlePending)
-  .addCase(deleteContact.pending, handlePending)
-  
-  .addCase(fetchContacts.rejected, handleRejected)
-  .addCase(addContact.rejected, handleRejected)
-  .addCase(deleteContact.rejected, handleRejected);
-});
+    .addCase(fetchContacts.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.list = action.payload.contacts;
+    })
+    .addCase(addContact.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.list.push(action.payload.contact);
+    })
+    .addCase(deleteContact.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      const index = state.list.findIndex(item => item._id === action.meta.arg);
+      state.list.splice(index, 1);
+    })
+    .addCase(clearContacts.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.list = [];
+    })
 
+    .addCase(fetchContacts.pending, handlePending)
+    .addCase(addContact.pending, handlePending)
+    .addCase(deleteContact.pending, handlePending)
+
+    .addCase(fetchContacts.rejected, handleRejected)
+    .addCase(addContact.rejected, handleRejected)
+    .addCase(deleteContact.rejected, handleRejected);
+});
 
 // export const itemsSlice = createSlice({
 //   name: 'items',

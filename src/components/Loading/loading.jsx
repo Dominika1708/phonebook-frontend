@@ -9,7 +9,7 @@ export const Loading = () => {
   return (
     <div className={styles.loading}>
       {isLoading && !error && <b>Loading...</b>}
-      {error && !isLoading && <b>{error}</b>}
+      {error && !isLoading && <b>Request failed with status code {error}</b>}
     </div>
   );
 };

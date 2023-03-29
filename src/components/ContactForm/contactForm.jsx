@@ -18,7 +18,7 @@ export const ContactForm = () => {
       return alert(`${name} is already in contacts`);
     }
 
-    dispatch(addContact({ name, number }));
+    dispatch(addContact({ name, phone: number }));
     form.reset();
   };
 

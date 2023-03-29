@@ -8,11 +8,11 @@ export const ContactItem = ({ contact }) => {
 
   return (
     <li>
-      {contact.name}: {contact.number}
+      {contact.name}: {contact.phone}
       <button
         className={styles.delete__button}
         type="button"
-        onClick={() => dispatch(deleteContact(contact.id))}
+        onClick={() => dispatch(deleteContact(contact._id))}
       >
         Delete
       </button>
