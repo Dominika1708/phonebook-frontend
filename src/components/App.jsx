@@ -14,6 +14,7 @@ const Login = lazy(() => import('pages/Login/login'));
 const Home = lazy(() => import('pages/Home/home'));
 const Register = lazy(() => import('pages/Register/register'));
 const Verify = lazy(() => import('pages/Verify/verify'));
+const NotFound = lazy(() => import('pages/NotFound/notFound'));
 
 export const App = () => {
   const error = useSelector(selectError);
@@ -57,6 +58,7 @@ export const App = () => {
             }
           />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
