@@ -1,6 +1,11 @@
 // import { createSlice} from '@reduxjs/toolkit';
 import { createReducer } from '@reduxjs/toolkit';
-import { fetchContacts, addContact, deleteContact, clearContacts } from './operations';
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+  clearContacts,
+} from './operations';
 
 let itemsInitialState = {
   list: [],
@@ -22,12 +27,17 @@ export const itemsReducer = createReducer(itemsInitialState, builder => {
     .addCase(fetchContacts.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
-      state.list = action.payload.contacts;
+      state.list = action.payload.contacts.sort((first, second) =>
+        first.name.localeCompare(second.name)
+      );
     })
     .addCase(addContact.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
       state.list.push(action.payload.contact);
+      state.list.sort((first, second) =>
+        first.name.localeCompare(second.name)
+      );
     })
     .addCase(deleteContact.fulfilled, (state, action) => {
       state.isLoading = false;

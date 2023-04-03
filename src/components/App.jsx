@@ -29,7 +29,6 @@ export const App = () => {
   });
 
   return (
-    <div>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -60,6 +59,5 @@ export const App = () => {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </div>
   );
 };

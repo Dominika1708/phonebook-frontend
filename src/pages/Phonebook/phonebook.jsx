@@ -18,7 +18,7 @@ const Phonebook = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <>
       <h1>Phonebook</h1>
       <ContactForm />
 
@@ -26,7 +26,7 @@ const Phonebook = () => {
       <Filter />
       <Loading />
       <ContactList />
-    </div>
+    </>
   );
 };
 

@@ -7,7 +7,7 @@ export const ContactItem = ({ contact }) => {
   const dispatch = useDispatch();
 
   return (
-    <li>
+    <li className={styles.contact}>
       {contact.name}: {contact.phone}
       <button
         className={styles.delete__button}

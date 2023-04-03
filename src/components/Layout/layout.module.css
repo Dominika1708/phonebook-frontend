@@ -20,18 +20,17 @@
 }
 
 .navigation {
-  padding-right: 50px;
+  padding-right: 10px;
 }
 
 .link {
-  padding: 15px;
-  margin-top: 10px;
+  padding: 5px;
   color: #fff;
-  font-size: 24px;
+  font-size: 18px;
   text-decoration: none;
   display: inline-block;
   transition: background-color 200ms ease-out;
-  border-radius: 20px 20px 2px 2px;
+  border-radius: 20px;
 }
 
 .link:hover {
@@ -45,6 +44,29 @@
 
 .content {
   padding-top: 20px;
+  margin: 0 15px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .navigation {
+    padding-right: 50px;
+  }
+
+  .link {
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 20px 20px 2px 2px;
+  }
+
+  .content {
+    margin:0 50px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .link {
+    font-size: 24px;
+  }
 }
