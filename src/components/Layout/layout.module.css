@@ -3,7 +3,7 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(122, 192, 48);
+  background-color: #15616D;
 }
 
 .phonebook {
@@ -46,7 +46,7 @@
   padding-top: 20px;
   margin: 0 15px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
 }
 

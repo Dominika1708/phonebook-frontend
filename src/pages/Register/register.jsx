@@ -1,5 +1,4 @@
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import styles from '../../components/app.module.css';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
@@ -53,9 +52,9 @@ const Register = () => {
         />
       </Form.Group>
 
-      <Button variant="outline-success" type="submit">
+      <button className={styles.button} type="submit">
         Register
-      </Button>
+      </button>
     </Form>
   );
 };

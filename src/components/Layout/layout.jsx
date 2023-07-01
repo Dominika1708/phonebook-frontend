@@ -7,10 +7,10 @@ import styled from 'styled-components';
 import styles from './layout.module.css';
 
 const Link = styled(NavLink)`
-  background-color: rgb(122, 192, 48);
+  background-color: #15616D;
 
   &.active {
-    background-color: rgb(1, 137, 8);
+    background-color: #001524;
   }
 `;
 
