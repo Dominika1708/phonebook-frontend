@@ -5,7 +5,7 @@ axios.defaults.baseURL =
   'https://willowy-crumble-d3eb49.netlify.app/.netlify/functions/app';
 
 export const fetchContacts = createAsyncThunk(
-  'contacts/fetchAll',
+  'contacts/fetchContacts',
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/contact');
