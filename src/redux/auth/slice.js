@@ -20,7 +20,8 @@ export const authReducer = createReducer(initialState, builder => {
   builder
     .addCase(register.fulfilled, (state, action) => {
       state.user = action.payload.user;
-      state.isVerified = false;
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
       localStorage.setItem('user', JSON.stringify(state));
     })
     .addCase(register.rejected, (_state, action) => {
