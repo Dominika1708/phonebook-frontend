@@ -7,10 +7,11 @@ import { ContactList } from 'components/ContactList/contactList';
 import { Filter } from 'components/Filter/filter';
 import { Loading } from 'components/Loading/loading';
 import { selectIsPending } from 'redux/auth/selectors';
+import styles from '../../components/app.module.css';
 
 const Phonebook = () => {
   const dispatch = useDispatch();
-  const isPending = useSelector(selectIsPending)
+  const isPending = useSelector(selectIsPending);
 
   useEffect(() => {
     if (!isPending) dispatch(fetchContacts());
@@ -18,14 +19,17 @@ const Phonebook = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={styles.phonebook}>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <div className={styles.phonebook__container}>
+        <ContactForm />
 
-      <h2>Contacts</h2>
-      <Filter />
-      <Loading />
-      <ContactList />
+        <div className={styles.contacts__container}>
+          <Filter />
+          <Loading />
+          <ContactList />
+        </div>
+      </div>
     </div>
   );
 };
